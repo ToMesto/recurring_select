@@ -167,7 +167,7 @@ window.RecurringSelectDialog =
       return if !(@current_rule.hash? && (rule_type = @current_rule.hash.rule_type)?)
       @current_rule.hash['week_start'] = $.fn.recurring_select.texts["first_day_of_week"]
       $.ajax
-        url: "<%= Rails.application.config.action_controller.relative_url_root %>/recurring_select/translate/#{$.fn.recurring_select.texts["locale_iso_code"]}",
+        url: $.fn.recurring_select.texts["fetch_path"],
         type: "POST",
         data: @current_rule.hash
         success: @summaryFetchSuccess
