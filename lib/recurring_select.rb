@@ -11,7 +11,6 @@ module RecurringSelect
         params = JSON.parse(params)
       end
 
-      params = params.symbolize_keys
       rules_hash = filter_params(params)
 
       IceCube::Rule.from_hash(rules_hash)
@@ -46,7 +45,6 @@ module RecurringSelect
     params[:week_start] = params[:week_start].to_i if params[:week_start]
 
     params[:validations] ||= {}
-    params[:validations].symbolize_keys!
 
     if params[:validations][:day]
       params[:validations][:day] = params[:validations][:day].collect(&:to_i)
@@ -60,7 +58,7 @@ module RecurringSelect
     if params[:validations][:day_of_week]
       params[:validations][:day_of_week] ||= {}
       if params[:validations][:day_of_week].length > 0 and not params[:validations][:day_of_week].keys.first =~ /\d/
-        params[:validations][:day_of_week].symbolize_keys!
+        params[:validations][:day_of_week]
       else
         originals = params[:validations][:day_of_week].dup
         params[:validations][:day_of_week] = {}
